@@ -58,6 +58,8 @@ def drop(x: LList[T], k: int) -> LList[T]:
     >>> drop(Link(1, Link(2, None)), 1)
     Link(2, None)
     """
+    if x==None:
+        return None
     if k==0:
         return x
     while k:
@@ -65,6 +67,8 @@ def drop(x: LList[T], k: int) -> LList[T]:
         k -= 1
     return x
     ...
+
+print(drop(None, 1) is None)
 
 def reverse(x: LList[T]) -> LList[T]:
     """
