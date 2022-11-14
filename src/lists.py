@@ -36,7 +36,13 @@ def length(x: LList[T]) -> int:
     >>> length(Link(1, Link(2, None)))
     2
     """
+    acc = 0
+    while x:
+        acc += 1
+        x = x.tail
+    return acc
     ...
+
 
 
 def drop(x: LList[T], k: int) -> LList[T]:
@@ -52,25 +58,17 @@ def drop(x: LList[T], k: int) -> LList[T]:
     >>> drop(Link(1, Link(2, None)), 1)
     Link(2, None)
     """
+    if x==None:
+        return None
+    if k==0:
+        return x
+    while k:
+        x=x.tail
+        k -= 1
+    return x
     ...
 
-
-def take(x: LList[T], k: int) -> LList[T]:
-    """
-    Return a list with the first k elements in x.
-
-    If length(x) < k, return the full list. You decide whether you
-    want to return a copy of x or the original list.
-
-    >>> take(None, 1) is None
-    True
-    >>> take(Link(1, None), 1)
-    Link(1, None)
-    >>> take(Link(1, Link(2, Link(3, None))), 2)
-    Link(1, Link(2, None))
-    """
-    ...
-
+print(drop(None, 1) is None)
 
 def reverse(x: LList[T]) -> LList[T]:
     """
@@ -87,4 +85,35 @@ def reverse(x: LList[T]) -> LList[T]:
     >>> reverse(Link(1, Link(2, Link(3, None))))
     Link(3, Link(2, Link(1, None)))
     """
+    ...
+    lst = None
+    while x:
+        lst = Link(x.head, lst)
+        x = x.tail
+    return lst
+
+
+
+def take(x: LList[T], k: int) -> LList[T]:
+    """
+    Return a list with the first k elements in x.
+
+    If length(x) < k, return the full list. You decide whether you
+    want to return a copy of x or the original list.
+
+    >>> take(None, 1) is None
+    True
+    >>> take(Link(1, None), 1)
+    Link(1, None)
+    >>> take(Link(1, Link(2, Link(3, None))), 2)
+    Link(1, Link(2, None))
+    """
+    new_lst = None
+    if length(x) < k:
+        return x
+    while k:
+        new_lst = Link(x.head,new_lst)
+        x = x.tail
+        k -= 1
+    return reverse(new_lst)
     ...
